@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "登録完了"
+      flash[:notice] = "ユーザー登録できました。"
       redirect_to user_path(@user.id)
 
     else

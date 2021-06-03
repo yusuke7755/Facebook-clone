@@ -1,0 +1,9 @@
+<h3>この内容で投稿します。</h3>
+<%= form_with(model: @post, url: confirm_new_or_edit, method: confirm_form_method, local: true) do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :image %>
+  <p>タイトル:<%= @post.email %></p>
+  <p>問い合わせ内容:<%= @post.content %></p>
+  <%= form.submit  "登録する" %>
+  <%= form.submit '戻る', name: 'back' %>
+<% end %>

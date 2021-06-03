@@ -1,0 +1,12 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="post_content">
+    <%= form.label :content %>
+    <%= form.text_field :content , size: "40" %>
+  </div>
+  <div class="post_image">
+    <%= form.label :image %>
+    <%= form.text_area :image , size: "40x30" %>
+  </div>
+  <%= form.submit "投稿する"%>
+<% end %>
+<%= link_to "一覧画面にもどる", posts_path %>

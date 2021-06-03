@@ -12,13 +12,13 @@
 <%= form_with(model: @user, local: true) do |f| %>
 <h1>Family Book</h1>
 <h1>新規登録</h1>
-<%= f.label :name %>
-<%= f.text_field :name %>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.label :password_confirmation %>
-<%= f.password_field :password_confirmation %>
-<%= f.submit "アカウントの作成" %>
+<p><%= f.label :name %></p>
+<p><%= f.text_field :name %></p>
+<p><%= f.label :email %></p>
+<p><%= f.email_field :email %></p>
+<p><%= f.label :password %></p>
+<p><%= f.password_field :password %></p>
+<p><%= f.label :password_confirmation %></p>
+<p><%= f.password_field :password_confirmation %></p>
+<p><%= f.submit "アカウントの作成する" %></p>
 <% end %>

@@ -1,5 +1,27 @@
 <% provide(:title, 'index') %>
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
-<%= current_user.name %>
+<%= link_to "その出来事を残そう", new_post_path %>
+<h3>投稿<h3>
+<table border="1" width="300" cellspacing="1" cellpadding="1">
+<% if @post == false then %>
+    <% @post.each do |post| %>
+    <tr align="center">
+        <td><%= link_to '詳細', post_path(post.id) %>
+            <% if current_user.id == @post.user_id %>
+            <%= link_to '編集', edit_post_path(post.id) %>
+            <%= link_to '削除', post_path(post.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
+            <% else %>
+            <%= '    ' %>
+            <%= '    ' %>
+            <% end %>
+        </td>
+    </tr>
+    <tr align="center">
+        <td><%= post.content %></td>
+    </tr>
+    <tr align="center">
+        <td><%= post.image %></td>
+    </tr>
+    <% end %>
+<% end %>
+</table>
 

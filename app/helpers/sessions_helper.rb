@@ -12,11 +12,4 @@ module SessionsHelper
         current_user.present?
     end
 
-    def login_user
-    
-     @login_user = User.find(email: params[:session][:email].downcase)
-    
-    end
-
-
 end
