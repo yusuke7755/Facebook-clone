@@ -1,17 +1,18 @@
 <% provide(:title, 'ログイン') %>
-  <div>
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "#{key}") %>
-    <% end %>
-    <%= yield %>
+<body>
+<div class="outer">
+  <div class="inner">
+    <h1>Family Book</h1>
+      <div>
+        <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+          <p><%= f.label :email %></p>	
+          <p><%= f.email_field :email %></p>	
+          <p><%= f.label :password %></p>
+          <p><%= f.password_field :password %></p>
+          <p><%= f.submit "ログイン" %></p>
+        <% end %>	
+      </div>
+    <button><%=link_to "新しいアカウント作成", new_user_path %></button>
   </div>
-  <div>
-    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>	
-      <p><%= f.label :email %></p>	
-      <p><%= f.email_field :email %></p>	
-      <p><%= f.label :password %></p>
-      <p><%= f.password_field :password %></p>
-      <p><%= f.submit "ログイン" %></p>
-    <% end %>	
-  </div>
-<p><%= link_to "新しいアカウント作成", new_user_path %></p>
+</div>
+</body>

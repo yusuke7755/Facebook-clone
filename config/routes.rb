@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:index, :new, :edit, :destroy, :show]
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show]
+   resources :posts do
+    collection do
+      post :confirm
+    end
+    member do
+      patch :confirm
+    end
+  end
 end

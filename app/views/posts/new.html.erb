@@ -1,12 +1,22 @@
-<%= form_with(model: @post, local: true) do |form| %>
-  <div class="post_content">
-    <%= form.label :content %>
-    <%= form.text_field :content , size: "40" %>
-  </div>
-  <div class="post_image">
-    <%= form.label :image %>
-    <%= form.text_area :image , size: "40x30" %>
-  </div>
-  <%= form.submit "投稿する"%>
-<% end %>
-<%= link_to "一覧画面にもどる", posts_path %>
+<body>
+  <h3>投稿しよう</h3>
+  <%= form_with(model: @post, url: confirm_posts_path, local: true) do |form| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+          <h2><%= @post.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+          <p><%= form.label :content %></p>
+          <p><%= form.text_area :content ,  size: "40-20" %></p>
+          <p><%= form.label :image %><p>
+          <p><%= form.file_field :image %></p>
+          <p><%= form.hidden_field :image_cache %></p>
+      <p><%= form.submit "投稿する" %><p>
+  <% end %>
+  <button><%= link_to "一覧画面にもどる", posts_path %></button>
+</body>

@@ -1,9 +1,12 @@
 <h3>この内容で投稿します。</h3>
-<%= form_with(model: @post, url: confirm_new_or_edit, method: confirm_form_method, local: true) do |form| %>
+<%= form_with(model: @post, url: choose_new_or_edit, method: confirm_new_or_edit, local: true) do |form| %>
   <%= form.hidden_field :content %>
   <%= form.hidden_field :image %>
-  <p>タイトル:<%= @post.email %></p>
-  <p>問い合わせ内容:<%= @post.content %></p>
-  <%= form.submit  "登録する" %>
-  <%= form.submit '戻る', name: 'back' %>
+    <p>投稿:<%= @post.content %></p>
+      <%= form.hidden_field @post.image %>
+      <%= form.hidden_field :image_cache %>
+      <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+  <p><%= form.submit  "登録する" %></p>
+  <p><%= form.submit "戻る", name: "back"%></p>
 <% end %>
+

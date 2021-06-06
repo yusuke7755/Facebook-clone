@@ -1,5 +1,6 @@
-<h4>アカウントが登録されました</h4>
-<h1><%= @user.name %></h1>
-<p>メールアドレス: <%= @user.email %></p>
-<h4>ログイン画面へ戻る</h4>
-<p><%= link_to "ログイン", login_session_path %></p>
+<h5>アカウントが登録されました</h5>
+<p><h4><%= @user.name %></h4></p>
+<p><h5>メールアドレス</h5></p>
+<p><h4><%= @user.email %><h4></p>
+<p><h5>ログイン画面へ戻る</h5></p>
+<button><%= link_to "ログイン", new_session_path %></button>

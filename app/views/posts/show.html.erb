@@ -1,0 +1,6 @@
+<h3>詳細画面</h3>
+  投稿<br>
+  <%= @post.content %><br>
+  写真<br>
+  <%= image_tag(@post.image.url) if @post.image && @post.image.url %><br>
+  <button><%= link_to "戻る", posts_path %></button>

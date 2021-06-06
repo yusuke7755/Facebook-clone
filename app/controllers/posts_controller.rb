@@ -1,17 +1,16 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show ,:edit, :update, :destroy]
+  before_action :set_post, only: [:show ,:edit, :update, :destroy ]
 
   def index
-    @post = Post.all.order(created_at: "DESC")
+    @posts = Post.all.order(created_at: "DESC")
   end
 
-  def def new
+  def new
     @post = Post.new
   end
   
   def show
-    @favorite = current_user.favorites.find_by(post_id: @post.id)
-    @post = Post.find(params[:id])
+    @post = set_post
   end
 
   def edit
@@ -23,17 +22,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id #現在ログインしているuserのidを、postのuser_idカラムに挿入する
-    # 戻るで処理を変更
+    @post = current_user.posts.build(post_params)
     if params[:back]
       render :new
     else
       if @post.save
-        #データが正しく入力されれば保存。
-        redirect_to posts_path, 　notice: "投稿しました！"
+        redirect_to posts_path
       else
-        #データにエラーが生じている場合。画面をそのまま返す。
         render :new
       end
     end
@@ -50,18 +45,17 @@ class PostsController < ApplicationController
   end
 
   def confirm
-    @post.user_id = current_user.id #現在ログインしているuserのidを、postのuser_idカラムに挿入する
     @post = current_user.posts.build(post_params)
+    @post.user_id = current_user.id
     render :new if @post.invalid?
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:id, :content, :image)
+    params.require(:post).permit(:id, :content, :image ,:image_cache)
   end
 
-  # idをキーとして値を取得するメソッドを追加
   def set_post
     @post = Post.find(params[:id])
   end
